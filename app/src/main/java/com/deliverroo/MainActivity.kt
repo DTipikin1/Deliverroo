@@ -31,15 +31,15 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val tess = TessBaseAPI()
-        if (!tess.init(filesDir.absolutePath, "heb")) {
-            // Error initializing Tesseract (wrong data path or language)
-            tess.recycle();
-            return;
-        }
+        var imagePath = "sdcard/Download/ocrimages"
+        val image = File(imagePath,"pxl.jpg")
+        val ocr = OcrRunnable(this,image)
+        ocr.run()
+        val result = ocr.result
+        Log.d("test",result)
         //tess.setImage(image)
         //val text = tess.utF8Text
-
+        //val ocr = new OcrRunnable(this,)
 
         setContent {
             DeliverrooTheme {
