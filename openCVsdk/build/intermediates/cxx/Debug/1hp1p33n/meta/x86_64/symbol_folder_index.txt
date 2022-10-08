@@ -1,0 +1,1 @@
+/home/danieltipikin/AndroidStudioProjects/Deliverroo/openCVsdk/build/intermediates/cxx/Debug/1hp1p33n/obj/x86_64

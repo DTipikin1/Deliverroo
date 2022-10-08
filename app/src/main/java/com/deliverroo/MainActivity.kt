@@ -8,6 +8,8 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -30,16 +32,24 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+            readPermissionGranted = permissions[Manifest.permission.READ_EXTERNAL_STORAGE] ?: readPermissionGranted
+            writePermissionGranted = permissions[Manifest.permission.WRITE_EXTERNAL_STORAGE] ?: writePermissionGranted
+        }
+        updateOrRequestPermissions()
 
         var imagePath = "sdcard/Download/ocrimages"
-        val image = File(imagePath,"pxl.jpg")
+        UtilFunctions.getDirContents(File(imagePath))
+
+        val image = File(imagePath,"pxlresized.jpg")
+
         val ocr = OcrRunnable(this,image)
         ocr.run()
         val result = ocr.result
-        Log.d("test",result)
-        //tess.setImage(image)
-        //val text = tess.utF8Text
-        //val ocr = new OcrRunnable(this,)
+        Log.d("test before resize",result)
+
+
+
 
         setContent {
             DeliverrooTheme {

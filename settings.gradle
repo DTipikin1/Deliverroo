@@ -15,3 +15,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Deliverroo"
 include ':app'
+include ':openCV460'
+include ':openCVsdk'
