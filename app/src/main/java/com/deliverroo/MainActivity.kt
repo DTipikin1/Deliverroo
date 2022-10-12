@@ -8,7 +8,6 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
@@ -19,8 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.content.ContextCompat
 import com.deliverroo.ui.theme.DeliverrooTheme
-import com.deliverroo.util.UtilFunctions
-import com.googlecode.tesseract.android.TessBaseAPI
+import com.deliverroo.util.OpenCV
+import com.deliverroo.util.Setup
+import org.opencv.android.OpenCVLoader
 import java.io.File
 
 
@@ -38,12 +38,19 @@ class MainActivity : ComponentActivity() {
         }
         updateOrRequestPermissions()
 
-        var imagePath = "sdcard/Download/ocrimages"
-        UtilFunctions.getDirContents(File(imagePath))
-
+        //System.loadLibrary( Core.NATIVE_LIBRARY_NAME )
+        OpenCVLoader.initDebug()
+        val filePath = "sdcard/Download/ocrimages/pxlresized.jpg"
+        val imagePath = "sdcard/Download/ocrimages"
+        Setup.getDirContents(File(imagePath))
         val image = File(imagePath,"pxlresized.jpg")
+        val image2 = File(imagePath,"atb2.jpg")
+        val image5 = File(imagePath,"atb6.jpg")
 
-        val ocr = OcrRunnable(this,image)
+        //OpenCV.erode(filePath)
+
+        //OpenCV.AdaptiveThresh(filePath)
+        val ocr = OcrRunnable(this,image5)
         ocr.run()
         val result = ocr.result
         Log.d("test before resize",result)

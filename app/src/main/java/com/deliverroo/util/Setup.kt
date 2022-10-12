@@ -6,7 +6,7 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
 
-class UtilFunctions {
+class Setup {
 
 
     companion object {
