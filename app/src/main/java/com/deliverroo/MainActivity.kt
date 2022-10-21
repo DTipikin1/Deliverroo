@@ -2,6 +2,8 @@ package com.deliverroo
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -18,9 +20,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.content.ContextCompat
 import com.deliverroo.ui.theme.DeliverrooTheme
-import com.deliverroo.util.OpenCV
-import com.deliverroo.util.Setup
+import com.deliverroo.util.OpenCVHelper
 import org.opencv.android.OpenCVLoader
+import org.opencv.imgproc.Imgproc
 import java.io.File
 
 
@@ -38,23 +40,31 @@ class MainActivity : ComponentActivity() {
         }
         updateOrRequestPermissions()
 
-        //System.loadLibrary( Core.NATIVE_LIBRARY_NAME )
-        OpenCVLoader.initDebug()
-        val filePath = "sdcard/Download/ocrimages/pxlresized.jpg"
-        val imagePath = "sdcard/Download/ocrimages"
-        Setup.getDirContents(File(imagePath))
-        val image = File(imagePath,"pxlresized.jpg")
-        val image2 = File(imagePath,"atb2.jpg")
-        val image5 = File(imagePath,"atb6.jpg")
+        OpenCVLoader.initDebug() // crucial for openCV to work
+        val filePath = "sdcard/Download/ocrimages/a.jpg"
+        val baseImageBitmap: Bitmap = BitmapFactory.decodeFile(filePath)
 
-        //OpenCV.erode(filePath)
+        var ocrSwitch = false
 
-        //OpenCV.AdaptiveThresh(filePath)
-        val ocr = OcrRunnable(this,image5)
-        ocr.run()
-        val result = ocr.result
-        Log.d("test before resize",result)
+        //var bitmap = OpenCVHelper.AdaptiveThreshToBitmap(baseImageBitmap,1,255.0,11,12.0)
+        //bitmap = OpenCVHelper.erodeToBitmap(bitmap)
+        //OpenCVHelper.dynamicResize(filePath,0.0,0.0)
 
+
+        if (ocrSwitch) {
+            val ocr = OcrRunnable(this,baseImageBitmap)
+            ocr.run()
+            val result = ocr.result
+            Log.d("OCR", result)
+        }
+
+        /*
+        Runs preprocessing algos to find which combination of them gives the best ocr results
+         */
+
+        var resultList = OpenCVHelper.getOptimalResizing(baseImageBitmap, this)
+        //var resultList: MutableList<Any> = getOptimalImagePreProcessing(baseImageBitmap)
+        //Log.d("Phone", resultList.toString())
 
 
 
