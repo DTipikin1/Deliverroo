@@ -15,8 +15,9 @@
 local.properties
 
 # OpenCV
-openCVsdk/
+openCVsdk
 openCV
+
 
 
 # Log/OS Files

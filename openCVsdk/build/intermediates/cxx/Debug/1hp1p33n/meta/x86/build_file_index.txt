@@ -1,1 +1,0 @@
-/home/danieltipikin/AndroidStudioProjects/Deliverroo/openCVsdk/libcxx_helper/CMakeLists.txt
