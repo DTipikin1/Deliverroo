@@ -19,7 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.content.ContextCompat
-import com.deliverroo.domain.util.OcrRunnable
+import com.deliverroo.domain.util.ocr.OcrRunnable
 import com.deliverroo.ui.theme.DeliverrooTheme
 import org.opencv.android.OpenCVLoader
 

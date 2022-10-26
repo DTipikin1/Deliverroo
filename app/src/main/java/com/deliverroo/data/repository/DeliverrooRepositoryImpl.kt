@@ -22,18 +22,16 @@ class DeliverrooRepositoryImpl(
         return dao.deleteCustomer(customer)
     }
 
+
     override fun getDeliveries(): Flow<List<Delivery>> {
         return dao.getDeliveries()
     }
-
     override suspend fun getDeliveryById(id: Int): Delivery? {
         return dao.getDeliveryById(id)
     }
-
     override suspend fun insertDelivery(delivery: Delivery) {
         return dao.insertDelivery(delivery)
     }
-
     override suspend fun deleteDelivery(delivery: Delivery) {
         return dao.deleteDelivery(delivery)
     }

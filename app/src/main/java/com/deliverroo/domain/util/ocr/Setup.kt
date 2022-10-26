@@ -1,4 +1,4 @@
-package com.deliverroo.domain.util
+package com.deliverroo.domain.util.ocr
 
 import android.content.Context
 import android.util.Log
