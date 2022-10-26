@@ -14,4 +14,8 @@ import com.deliverroo.domain.models.Delivery
 )
 abstract class DeliverrooDatabase: RoomDatabase() {
     abstract val deliverrooDao: DeliverrooDao
+
+    companion object {
+        const val DATABASE_NAME = "deliverro_db"
+    }
 }
