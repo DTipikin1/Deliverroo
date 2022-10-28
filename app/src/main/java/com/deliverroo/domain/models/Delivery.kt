@@ -14,3 +14,5 @@ data class Delivery(
     val tipReceived: Byte,
     @PrimaryKey val id: Int? = null
 )
+
+class InvalidDeliveryException(message: String): Exception()

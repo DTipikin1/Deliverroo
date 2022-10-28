@@ -38,6 +38,8 @@ class MainActivity : ComponentActivity() {
         }
         updateOrRequestPermissions()
 
+
+
         OpenCVLoader.initDebug() // crucial for openCV to work
         val filePath = "sdcard/Download/ocrimages/a1.jpg"
         val baseImageBitmap: Bitmap = BitmapFactory.decodeFile(filePath)
